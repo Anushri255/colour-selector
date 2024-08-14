@@ -1,1 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Selector</title>
+    <style>
+        /* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    margin-top: 50px;
+    align-content: center;
+}
+
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+.start{
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    background-color: antiquewhite;
+}
+
+button.btn{
+    background-color: #6fbafc;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    display: block;
+    margin: auto;
+    width: 300px;
+    margin-bottom: 40px;
+}
+
+button.btn-saved{
+    background-color: #d38ffb;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    display: block;
+    margin: auto;
+    width: 300px;
+    
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Color Selector</h1>
+    </header>
+    <main>
+        <section id="questions">
+        </section>
+        <p class="start">Click below to get started</p>
+        <button class="btn"> Recommend me colours!</button>
+        <button class="btn-saved"> View Saved Palettes</button>
+
+        <section id="result" style="display:none;">
+            <h2>Recommended Palette</h2>
+            <div id="palette"></div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
 
