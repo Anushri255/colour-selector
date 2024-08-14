@@ -63,6 +63,16 @@
             margin: auto;
             width: 100px;
         }
+
+        button.btn-back {
+            background-color: #ff6f61;
+            color: #fff;
+            padding: 10px 20px;
+            margin-top: 20px;
+            display: block;
+            margin: auto;
+            width: 150px;
+        }
     </style>
 </head>
 <body>
@@ -81,14 +91,15 @@
         </section>
         <section id="saved-palettes" style="display:none;">
             <h2>Saved Palettes</h2>
+            <button class="btn-back">Back</button>
             <div id="saved-list"></div>
         </section>
     </main>
     <script>
-
         document.addEventListener('DOMContentLoaded', () => {
             const recommendButton = document.querySelector('.btn');
             const viewSavedButton = document.querySelector('.btn-saved');
+            const backButton = document.querySelector('.btn-back');
             const questionsSection = document.getElementById('questions');
             const resultSection = document.getElementById('result');
             const savedPalettesSection = document.getElementById('saved-palettes');
@@ -102,6 +113,10 @@
 
             viewSavedButton.addEventListener('click', () => {
                 showSavedPalettes();
+            });
+
+            backButton.addEventListener('click', () => {
+                showRecommendations();
             });
 
             function showQuestions() {
@@ -144,6 +159,16 @@
                         savePalette(colorPreference, colorIntensity, colorUsage);
                     });
                 });
+
+                resultSection.style.display = 'none';
+                savedPalettesSection.style.display = 'none';
+                questionsSection.style.display = 'block';
+            }
+
+            function showRecommendations() {
+                questionsSection.style.display = 'none';
+                savedPalettesSection.style.display = 'none';
+                resultSection.style.display = 'block';
             }
 
             function generatePalette(preference, intensity, usage) {
@@ -180,12 +205,12 @@
                 `).join('');
 
                 resultSection.style.display = 'block';
+                questionsSection.style.display = 'none';
+                savedPalettesSection.style.display = 'none';
             }
 
             function savePalette(preference, intensity, usage) {
                 const palettes = {
-                    // Got palette color suggestions using AI but the code for this part was still written by me
-                    // just the colour codes were copied
                     warm: {
                         vibrant: {
                             room: ['#FF5733', '#FFC300', '#FFBF00', '#F39C12', '#E74C3C'],
