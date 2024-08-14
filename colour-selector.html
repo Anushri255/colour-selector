@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Selector</title>
     <style>
-        /* styles.css */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -76,7 +74,92 @@ button.btn-saved{
             <div id="palette"></div>
         </section>
     </main>
-    <script src="script.js"></script>
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const recommendButton = document.querySelector('.btn');
+    const questionsSection = document.getElementById('questions');
+    const resultSection = document.getElementById('result');
+    const paletteDiv = document.getElementById('palette');
+
+    recommendButton.addEventListener('click', () => {
+        showQuestions();
+    });
+
+    function showQuestions() {
+        questionsSection.innerHTML = `
+            <h2>Answer the following questions to get your color palette:</h2>
+            <form id="questions-form">
+                <label for="color-preference">Do you prefer warm or cool colors?</label><br>
+                <select id="color-preference" name="color-preference">
+                    <option value="warm">Warm</option>
+                    <option value="cool">Cool</option>
+                </select><br><br>
+
+                <label for="color-intensity">Do you prefer vibrant or muted colors?</label><br>
+                <select id="color-intensity" name="color-intensity">
+                    <option value="vibrant">Vibrant</option>
+                    <option value="muted">Muted</option>
+                </select><br><br>
+
+                <label for="color-usage">Do you need suggestion for?</label><br>
+                <select id="color-usage" name="color-usage">
+                    <option value="room">Room Decor</option>
+                    <option value="website">Making a Website</option>
+                </select><br><br>
+
+                <button type="button" class="btn-submit">Submit</button>
+            </form>
+        `;
+
+        document.querySelector('.btn-submit').addEventListener('click', () => {
+            const form = document.getElementById('questions-form');
+            const colorPreference = form['color-preference'].value;
+            const colorIntensity = form['color-intensity'].value;
+            const colorUsage = form['color-usage'].value;
+
+            generatePalette(colorPreference, colorIntensity, colorUsage);
+        });
+    }
+
+    function generatePalette(preference, intensity, usage) {
+    const palettes = {
+        warm: {
+            vibrant: {
+                room: ['#FF5733', '#FFC300', '#FFBF00', '#F39C12', '#E74C3C'],
+                website: ['#FF5733', '#F39C12', '#C0392B', '#E67E22', '#D35400']
+            },
+            muted: {
+                room: ['#F5A623', '#F4A261', '#E9C46A', '#D6A4A4', '#D9B5A4'],
+                website: ['#F5A623', '#F4A261', '#E9C46A', '#E2B67D', '#D6BDA4']
+            }
+        },
+        cool: {
+            vibrant: {
+                room: ['#1F77B4', '#AEC7E8', '#17BECF', '#00A3E0', '#4B77BE'],
+                website: ['#1F77B4', '#00A3E0', '#17BECF', '#1F8EFA', '#54A0FF']
+            },
+            muted: {
+                room: ['#7F7F7F', '#C0C0C0', '#D3D3D3', '#B0BEC5', '#CFD8DC'],
+                website: ['#7F7F7F', '#B0BEC5', '#CFD8DC', '#90A4AE', '#9E9E9E']
+            }
+        }
+    };
+
+    const selectedPalette = palettes[preference][intensity][usage];
+    displayPalette(selectedPalette);
+}
+
+
+    function displayPalette(colors) {
+        paletteDiv.innerHTML = colors.map(color => `
+            <div style="background-color: ${color}; width: 100px; height: 100px; display: inline-block; margin: 5px;"></div>
+        `).join('');
+
+        resultSection.style.display = 'block';
+    }
+});
+
+    </script>
 </body>
 </html>
-
