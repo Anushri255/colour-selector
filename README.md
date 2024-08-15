@@ -2,6 +2,8 @@
 
 A simple web application that recommends colour palettes based on user preferences and allows users to save and view their favorite palettes.
 
+## Hosted on: https://anushri255.github.io/colour-selector.io/
+
 ## Features
 
 - **Color Recommendation**: Answer a few questions to get a colour palette tailored to your preferences.
